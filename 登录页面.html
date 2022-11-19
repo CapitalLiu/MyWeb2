@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="My Web-Learning records.">
+    <title>登录我的个人博客</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+        }
+        .container {
+            height: 200%;
+            background-image: linear-gradient(to right, #7554ea, #ec58ce);
+        }
+        .login-wrapper {
+            background-color: bisque;
+            width: 358px;
+            height: 588px;
+            border-radius: 15px;
+            padding: 0 50px;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            position:absolute;
+            z-index: 1;
+        }
+        .regester{
+            background-color:bisque;
+            width: 358px;
+            height: 500px;
+            border-radius: 15px;
+            padding: 50px;
+            margin: 0 auto;
+            top:80px;
+            position: relative;
+            transition: 0.5s;
+            z-index: 0;
+
+
+        }
+        .regesters{
+            background-color:darksalmon;
+            width: 358px;
+            height: 500px;
+            border-radius: 15px;
+            padding: 50px;
+            margin: 0 auto;
+            top:80px;
+            position: relative;
+            transition: 0.5s;
+            z-index: 2;
+
+
+        }
+        .header {
+            font-size: 38px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 200px;
+        }
+        .input-item {
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 0;
+            padding: 10px;
+            border-bottom: 1px solid rgb(128,125,125);
+            font-size: 15px;
+            outline: none;
+        }
+        .input-item::placeholder {
+            text-transform: uppercase;
+        }
+        .btn {
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            margin-top: 40px;
+            background-image: linear-gradient(to right,#6093eca2, #eb86cec5);
+            color: #fff;
+            font-size: 20px;
+        }
+        .msg {
+            text-align: center;
+            line-height: 88px;
+        }
+        a {
+            text-decoration-line: none;
+            color: #abc1ee;
+        }
+        .change{
+            background-color:bisque;
+            border: none;
+        }
+    </style>
+    <script type="text/javascript" href="./登录注册.js" ></script>
+</head>
+<body>
+    <div class="container">
+        <div class="login-wrapper">
+            <div class="header">登录</div>
+            <div class="form-wrapper">
+                <input type="text" name="username" placeholder="  用户名" required class="input-item">
+                <input type="password" name="password" placeholder="  请输入密码" required class="input-item">
+                <button class="btn" id="login">Login</button>
+            </div>
+            <div class="msg">
+                <button class="change" id="changes" target="_self">没有账户？
+                来注册吧</button>>
+            </div>
+
+        </div>
+        <div class="regester" id="p">
+            <div class="header">注册</div>
+            <div class="form-wrapper">
+                <input type="text" id="init_name" placeholder="  创建新的用户名" required class="input-item">
+                <input type="password" id="init_password" placeholder="  请输入新的密码" required class="input-item">
+                <button class="btn" id="regester">注册</button>
+            </div>
+        </div>
+        
+    </div>
+‘；
+    </div>
+<script>
+    window.onload=function(){
+        function find(key){
+            return this.dataStorege[key];
+        }
+        function add(key,value){
+            this.dataStorege[key] = value;
+        }
+        function Dictionary(){
+            this.dataStorege=new Array();
+            this.add=add;
+            this.find=find;
+        }
+
+        var Database=new Dictionary();
+        var make_name=document.getElementById("init_name")
+        var make_password=document.getElementById("init_password")
+        var regester_btn=document.getElementById("regester")
+        var login_btn=document.getElementById("login")
+        var username=document.getElementsByName("username").value
+        var password=document.getElementsByName("password").value
+        var change_btn=document.getElementById("changes")
+        var container=document.getElementsByClassName("container")
+        var regester_div=document.getElementById("p")
+
+        change_btn.addEventListener('click',function(){
+            regester_div.className='regesters'
+        })
+
+        regester_btn.addEventListener('click',function(){
+                var new_name = make_name.value
+                var new_word = make_password.value
+                Database.add(new_name,new_word)
+                regester_div.className='regester'
+                alert("注册成功，请重新登陆！")
+        })
+
+        login_btn.addEventListener('click',function(){
+            true_word=Database[username]
+            if(true_word ==password ){
+                window.location.pathname='../个人页面首页/个人页面m.html'
+            }
+        })
+    }
+</script>
+</body>
+</html>
